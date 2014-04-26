@@ -30,6 +30,8 @@ namespace NetComponentEntitySystem
         /// </summary>
         private readonly EntityWorld _world;
 
+        public string Tag { get; set; }
+
         public Entity(EntityWorld world)
         {
             _components = new Dictionary<Type, IComponent>();
@@ -88,6 +90,14 @@ namespace NetComponentEntitySystem
             where T : IComponent, new()
         {
             _components.Add(typeof (T), new T());
+        }
+
+        public void AddComponent(Type T, IComponent component)
+        {
+            lock (_lock)
+            {
+                _components.Add(T, component);
+            }
         }
 
         public void AddScript<T>(T script)
