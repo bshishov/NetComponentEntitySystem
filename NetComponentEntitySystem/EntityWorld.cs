@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 
@@ -141,6 +142,11 @@ namespace NetComponentEntitySystem
         public void Destroy(object sender, EventArgs args)
         {
             _systemManager.Destroy();
+        }
+
+        public Entity GetEntityByTag(string tag)
+        {
+            return _entities.FirstOrDefault(e => e.Tag != null && e.Tag.Equals(tag));
         }
     }
 }

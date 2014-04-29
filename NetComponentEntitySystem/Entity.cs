@@ -113,6 +113,12 @@ namespace NetComponentEntitySystem
             _scripts.Add(CreateScript<T>());
         }
 
+        public bool HasScript<T>()
+            where T : Script
+        {
+            return _scripts.OfType<T>().Any();
+        }
+
         public void RemoveScript<T>(T script)
             where T : Script
         {
@@ -157,5 +163,6 @@ namespace NetComponentEntitySystem
                 script.OnMessage(message);
             }
         }
+
     }
 }
